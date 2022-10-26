@@ -5,8 +5,15 @@ import Author from "./_child/Author";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {Autoplay} from 'swiper'
 import "swiper/css";
+import fetcher from "../lib/fetcher";
+import Spinner from "./_child/Spinner";
 
 const SectionOne = () => {
+
+	const {data, isLoading, isError} = fetcher('api/trending')
+
+	if(isLoading) return <Spinner/>
+	if(isError) return <Error/>
 
     SwiperCore.use([Autoplay])
 
@@ -23,32 +30,30 @@ const SectionOne = () => {
 				</h1>
 				<Swiper
 					slidesPerView={1}
-                    // loop={true}
-                    // autoplay={{
-                    //     delay: 2000,
-                    // }}
+                    loop={true}
+                    autoplay={{
+                        delay: 2500,
+                    }}
 				>
-					<SwiperSlide><Slide /></SwiperSlide>
-					<SwiperSlide><Slide /></SwiperSlide>
-					<SwiperSlide><Slide /></SwiperSlide>
-					<SwiperSlide><Slide /></SwiperSlide>
+					{data.map((item, index) => <SwiperSlide  key={index} ><Slide data={item}/></SwiperSlide>)}
 				</Swiper>
 			</div>
 		</section>
 	);
 };
 
-const Slide = () => {
+const Slide = ({data: {id, img, title, subtitle, category, published, author}}) => {
 	return (
 		<div className="grid md:grid-cols-2 ">
 			<div className="image">
 				<Link href={"/"}>
 					<a>
 						<Image
-							src={"/images/img1.jpg"}
+							src={img || "/"}
 							alt={""}
 							width={600}
 							height={600}
+							objectFit="cover"
 						/>
 					</a>
 				</Link>
@@ -56,26 +61,23 @@ const Slide = () => {
 			<div className="info flex justify-center flex-col ">
 				<div className="cat">
 					<Link href={"/"}>
-						<a className="text-orange-600">Business, Travel</a>
+						<a className="text-orange-600">{category || "unknown"}</a>
 					</Link>
 					<Link href={"/"}>
-						<a className="text-gray-800">- July 3 2022</a>
+						<a className="text-gray-800">{published || "unknown"}</a>
 					</Link>
 				</div>
 				<div className="title">
 					<Link href={"/"}>
 						<a className="text-3xl md:text-6xl font-bold text-gray-800 hover:text-gray-500 ">
-							Your most unhappy customers are{" "}
+							{title}
 						</a>
 					</Link>
 				</div>
 				<p className="text-gray-500 py-3">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Deserunt labore cupiditate consectetur! Dolor adipisci
-					distinctio commodi earum velit dolore laboriosam sed ex,
-					exercitationem ea.
+					{subtitle}
 				</p>
-				<Author />
+				{author ? <Author /> : <></>}
 			</div>
 		</div>
 	);

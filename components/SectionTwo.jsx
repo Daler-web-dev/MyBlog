@@ -8,13 +8,10 @@ import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
 
 const SectionTwo = () => {
-
-
 	const {data, isLoading, isError} = fetcher('api/posts')
 
 	if(isLoading) return <Spinner/>
 	if(isError) return <Error/>
-
 
 	return (
 		<div className="container mx-auto md:px-20 py-10">
