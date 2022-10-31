@@ -58,21 +58,21 @@ const Post = ({data: {id, img, title, subtitle, category, published, author}}) =
 			</div>
 			<div className="info flex justify-center flex-col">
 				<div className="cat">
-					<Link href={"/"}>
+					<Link href={`/posts/${id}`}>
 						<a className="text-orange-600">{category}</a>
 					</Link>
-					<Link href={"/"}>
+					<Link href={`/posts/${id}`}>
 						<a className="text-gray-800"> - {published}</a>
 					</Link>
 				</div>
 				<div className="title">
-					<Link href={"/"}>
+					<Link href={`/posts/${id}`}>
 						<a className="text-3xl md:text-xl font-bold text-gray-800 hover:text-gray-500 ">
 							{title}
 						</a>
 					</Link>
 				</div>
-				{author ? <Author /> : <></>}
+				{author ? <Author {...author} /> : <></>}
 			</div>
 		</div>
 	);

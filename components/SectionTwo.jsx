@@ -27,11 +27,11 @@ const SectionTwo = () => {
 	);
 };
 
-const Post = ({data: {id, img, title, subtitle, category, published}}) => {
+const Post = ({data: {id, img, title, subtitle, category, published, author}}) => {
 	return (
 		<div className="item">
 			<div className="images">
-				<Link href={"/"}>
+				<Link href={`/posts/${id}`}>
 					<a>
 						<Image
 							src={img || "/"}
@@ -44,15 +44,15 @@ const Post = ({data: {id, img, title, subtitle, category, published}}) => {
 			</div>
 			<div className="info flex justify-center flex-col py-4">
                 <div className="cat">
-                    <Link href={"/"}>
+                    <Link href={`/posts/${id}`}>
                         <a className="text-orange-600">{category}</a>
                     </Link>
-                    <Link href={"/"}>
+                    <Link href={`/posts/${id}`}>
                         <a className="text-gray-800"> - {published}</a>
                     </Link>
                 </div>
                 <div className="title">
-					<Link href={"/"}>
+					<Link href={`/posts/${id}`}>
 						<a className="text-xl font-bold text-gray-800 hover:text-gray-500 ">
 							{title}
 						</a>
@@ -61,7 +61,7 @@ const Post = ({data: {id, img, title, subtitle, category, published}}) => {
                 <p className="text-gray-500 py-3">
 					{subtitle}
 				</p>
-				<Author />
+				{author ? <Author {...author} /> : <></>}
             </div>
 		</div>
 	);

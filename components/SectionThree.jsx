@@ -7,33 +7,46 @@ import Author from "./_child/Author";
 import Spinner from "./_child/Spinner";
 
 const SectionThree = () => {
+	const { data, isLoading, isError } = fetcher("api/popular");
 
-	const {data, isLoading, isError} = fetcher('api/popular')
-
-	if(isLoading) return <Spinner/>
-	if(isError) return <Error/>
+	if (isLoading) return <Spinner></Spinner>;
+	if (isError) return <Error></Error>;
 
 	return (
-		<div className="container mx-auto md:px-20 py-16">
+		<section className="container mx-auto md:px-20 py-16">
 			<h1 className="font-bold text-4xl py-12 text-center">
-				Latest Posts
+				Most Popular
 			</h1>
+
 			{/* swiper */}
-			<Swiper slidesPerView={2}>
-				{data.map((item, index) => <SwiperSlide  key={index} ><Post data={item}/></SwiperSlide>)}
+			<Swiper
+				breakpoints={{
+					640: {
+						slidesPerView: 2,
+						spaceBetween: 30,
+					},
+				}}
+			>
+				{data.map((value, index) => (
+					<SwiperSlide key={index}>
+						<Post data={value}></Post>
+					</SwiperSlide>
+				))}
 			</Swiper>
-		</div>
+		</section>
 	);
 };
 
-const Post = ({data: {id, img, title, subtitle, category, published, author}}) => {
+const Post = ({
+	data: { id, img, title, subtitle, category, published, author },
+}) => {
 	return (
 		<div className="grid">
 			<div className="images">
 				<Link href={"/"}>
-					<a className="rounded" >
+					<a className="rounded">
 						<Image
-							src={img ||"/"}
+							src={img || "/"}
 							alt={""}
 							width={600}
 							height={400}
@@ -44,24 +57,22 @@ const Post = ({data: {id, img, title, subtitle, category, published, author}}) =
 			</div>
 			<div className="info flex justify-center flex-col py-4">
 				<div className="cat">
-					<Link href={"/"}>
+					<Link href={`/posts/${id}`}>
 						<a className="text-orange-600">{category}</a>
 					</Link>
-					<Link href={"/"}>
+					<Link href={`/posts/${id}`}>
 						<a className="text-gray-800"> - {published}</a>
 					</Link>
 				</div>
 				<div className="title">
-					<Link href={"/"}>
+					<Link href={`/posts/${id}`}>
 						<a className="text-3xl md:text-4xl font-bold text-gray-800 hover:text-gray-500 ">
 							{title}
 						</a>
 					</Link>
 				</div>
-				<p className="text-gray-500 py-3">
-					{subtitle}
-				</p>
-				{author ? <Author /> : <></>}
+				<p className="text-gray-500 py-3">{subtitle}</p>
+				{author ? <Author {...author} /> : <></>}
 			</div>
 		</div>
 	);
