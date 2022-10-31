@@ -40,7 +40,6 @@ const SectionOne = () => {
 							<Slide data={value}></Slide>
 						</SwiperSlide>
 					))}
-					...
 				</Swiper>
 			</div>
 		</section>
