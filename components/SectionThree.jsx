@@ -7,7 +7,7 @@ import Author from "./_child/Author";
 import Spinner from "./_child/Spinner";
 
 const SectionThree = () => {
-	const { data, isLoading, isError } = fetcher("api/popular");
+	const { data, isLoading, isError } = fetcher("/api/articles");
 
 	if (isLoading) return <Spinner></Spinner>;
 	if (isError) return <Error></Error>;
@@ -27,11 +27,11 @@ const SectionThree = () => {
 					},
 				}}
 			>
-				{data.map((value, index) => (
+				{data ? data.map((value, index) => (
 					<SwiperSlide key={index}>
 						<Post data={value}></Post>
 					</SwiperSlide>
-				))}
+				)) : ""}
 			</Swiper>
 		</section>
 	);
@@ -58,20 +58,20 @@ const Post = ({
 			<div className="info flex justify-center flex-col py-4">
 				<div className="cat">
 					<Link href={`/posts/${id}`}>
-						<a className="text-orange-600">{category}</a>
+						<a className="text-orange-600">{category || "" }</a>
 					</Link>
 					<Link href={`/posts/${id}`}>
-						<a className="text-gray-800"> - {published}</a>
+						<a className="text-gray-800"> - {published || "" }</a>
 					</Link>
 				</div>
 				<div className="title">
 					<Link href={`/posts/${id}`}>
 						<a className="text-3xl md:text-4xl font-bold text-gray-800 hover:text-gray-500 ">
-							{title}
+							{title || "" }
 						</a>
 					</Link>
 				</div>
-				<p className="text-gray-500 py-3">{subtitle}</p>
+				<p className="text-gray-500 py-3">{subtitle || "" }</p>
 				{author ? <Author {...author} /> : <></>}
 			</div>
 		</div>

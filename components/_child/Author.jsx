@@ -10,7 +10,6 @@ const Author = ({name, img, designation}) => {
                 <Link href={"/"} ><a className="text-md font-bold text-gray-800 hover:text-gray-600">{name || "No Name"}</a></Link>
                 <span className="text-sm text-gray-500" >{designation || "NO designation"}</span>
             </div>
-
         </div>
     );
 };

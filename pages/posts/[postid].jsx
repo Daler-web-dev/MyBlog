@@ -14,20 +14,21 @@ import {getPost} from '../../lib/helper'
 export default function Page({ fallback }) {
     const router = useRouter()
 
-    const {data, isLoading, isError} = fetcher(`api/posts/${router.query.postid}`)
+    const {arr, isLoading, isError} = fetcher(`/api/articles/${router.query.postid}`)
+
 
     if(isLoading) return <Spinner/>
     if(isError) return <Error/>
 
     return (
         <SWRConfig value={{ fallback }} >
-            <Article {...data} />
+            <Article {...arr} />
         </SWRConfig>
     )
 
 }    
 
-const Article = ({author, img, title, subtitle, description}) => {
+const Article = ({attributes: {author, img, title, subtitle, description}}) => {
 
 
     return (

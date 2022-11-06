@@ -7,20 +7,17 @@ import Error from "./Error";
 import Spinner from "./Spinner";
 
 const Related = () => {
-	const {data, isLoading, isError} = fetcher('api/posts')
+	const {data, isLoading, isError} = fetcher("/api/articles")
 
 	if(isLoading) return <Spinner/>
 	if(isError) return <Error/>
-
-
 
 	return (
 		<section className="pt-12">
 			<h1 className="font-bold text-4xl py-12 text-start">Related</h1>
 
 			<div className="flex flex-col gap-10">
-                {/* <Post/> */}
-				{data.map((item, index) => <Post key={index} data={item} />)}
+				{ data ? data.map((item, index) => <Post key={index} data={item} />) : ""}
             </div>
 		</section>
 	);

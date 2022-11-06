@@ -6,9 +6,13 @@ import { getPost } from "../lib/helper";
 import Author from "./_child/Author";
 import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
+import axios from 'axios'
 
 const SectionTwo = () => {
-	const {data, isLoading, isError} = fetcher('api/posts')
+	const {arr, isLoading, isError} = fetcher("/api/articles")
+
+	axios.get('http://localhost:1337/api/upload/files')
+		.then(res => console.log(res))
 
 	if(isLoading) return <Spinner/>
 	if(isError) return <Error/>
@@ -20,14 +24,14 @@ const SectionTwo = () => {
 			</h1>
 			<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
 				{
-					data.map((item, index) => <Post data={item} key={index} />)
+					arr ? arr.map((item, index) => <Post data={item.attributes} id={item.id} key={index} />) : ""
 				}
             </div>
 		</div>
 	);
 };
 
-const Post = ({data: {id, img, title, subtitle, category, published, author}}) => {
+const Post = ({data: {img, title, subtitle, category, published, author}, id}) => {
 	return (
 		<div className="item">
 			<div className="images">
@@ -45,21 +49,21 @@ const Post = ({data: {id, img, title, subtitle, category, published, author}}) =
 			<div className="info flex justify-center flex-col py-4">
                 <div className="cat">
                     <Link href={`/posts/${id}`}>
-                        <a className="text-orange-600">{category}</a>
+                        <a className="text-orange-600">{category || ""}</a>
                     </Link>
                     <Link href={`/posts/${id}`}>
-                        <a className="text-gray-800"> - {published}</a>
+                        <a className="text-gray-800"> - {published || ""}</a>
                     </Link>
                 </div>
                 <div className="title">
 					<Link href={`/posts/${id}`}>
 						<a className="text-xl font-bold text-gray-800 hover:text-gray-500 ">
-							{title}
+							{title || ""}
 						</a>
 					</Link>
 				</div>
                 <p className="text-gray-500 py-3">
-					{subtitle}
+					{subtitle || ""}
 				</p>
 				{author ? <Author {...author} /> : <></>}
             </div>

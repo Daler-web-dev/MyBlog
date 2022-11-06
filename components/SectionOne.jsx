@@ -7,12 +7,15 @@ import SwiperCore, { Autoplay } from "swiper";
 import "swiper/css";
 import fetcher from "../lib/fetcher";
 import Spinner from "./_child/Spinner";
+import Error from "./_child/Error";
+import {url} from '../next.config'
+
 
 const SectionOne = () => {
-	const { data, isLoading, isError } = fetcher("api/trending");
+	const { arr, isLoading, isError } = fetcher("/api/articles");
 
-	if (isLoading) return <Spinner></Spinner>;
-	if (isError) return <Error></Error>;
+	if (isLoading) return <Spinner/>;
+	if (isError) return <Error/>;
 
 	SwiperCore.use([Autoplay]);
 
@@ -35,27 +38,25 @@ const SectionOne = () => {
 					    delay: 2000
 					}}
 				>
-					{data.map((value, index) => (
+					{arr ? arr.map((value, index) => (
 						<SwiperSlide key={index}>
-							<Slide data={value}></Slide>
+							<Slide id={value.id} data={value.attributes}></Slide>
 						</SwiperSlide>
-					))}
+					)) : ""}
 				</Swiper>
 			</div>
 		</section>
 	);
 };
 
-const Slide = ({
-	data: { id, img, title, subtitle, category, published, author },
-}) => {
+const Slide = ({id, data: {img, title, subtitle, category, published, author }}) => {
 	return (
 		<div className="grid md:grid-cols-2 ">
 			<div className="image">
 				<Link href={`/posts/${id}`}>
 					<a>
 						<Image
-							src={img || "/"}
+							src={img || "/images/myimage.jpg"}
 							alt={""}
 							width={600}
 							height={600}
@@ -80,11 +81,11 @@ const Slide = ({
 				<div className="title">
 					<Link href={`/posts/${id}`}>
 						<a className="text-3xl md:text-6xl font-bold text-gray-800 hover:text-gray-500 ">
-							{title}
+							{title || 'no titlw'}
 						</a>
 					</Link>
 				</div>
-				<p className="text-gray-500 py-3">{subtitle}</p>
+				<p className="text-gray-500 py-3">{subtitle || ""}</p>
 				{author ? <Author {...author} /> : <></>}
 			</div>
 		</div>

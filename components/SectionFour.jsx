@@ -7,7 +7,7 @@ import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
 
 const SectionFour = () => {
-	const {data, isLoading, isError} = fetcher('api/popular')
+	const {data, isLoading, isError} = fetcher("/api/articles")
 
 	if(isLoading) return <Spinner/>
 	if(isError) return <Error/>
@@ -21,9 +21,7 @@ const SectionFour = () => {
 						Business
 					</h1>
 					<div className="flex flex-col gap-6">
-						{data[1]?<Post data={data[1]} /> : <></>}
-						{data[2]?<Post data={data[2]} /> : <></>}
-						{data[3]?<Post data={data[3]} /> : <></>}
+						{data || "" ? data.slice(1,3).map(item => <Post data={item.attributes} />) : <></>}
 					</div>
 				</div>
 				<div className="item">
@@ -31,9 +29,7 @@ const SectionFour = () => {
 						Travel
 					</h1>
 					<div className="flex flex-col gap-6">
-						{data[4]?<Post data={data[4]} /> : <></>}
-						{data[5]?<Post data={data[5]} /> : <></>}
-						{data[2]?<Post data={data[2]} /> : <></>}
+						{data ? data.slice(3).map(item => <Post data={item.attributes} />) : <></>}
 					</div>
 				</div>
 			</div>
@@ -42,6 +38,9 @@ const SectionFour = () => {
 };
 
 const Post = ({data: {id, img, title, subtitle, category, published, author}}) => {
+
+	console.log(img, 'sss');
+
 	return (
 		<div className="flex gap-5">
 			<div className="images flex-flex-col jusify-start">
@@ -59,10 +58,10 @@ const Post = ({data: {id, img, title, subtitle, category, published, author}}) =
 			<div className="info flex justify-center flex-col">
 				<div className="cat">
 					<Link href={`/posts/${id}`}>
-						<a className="text-orange-600">{category}</a>
+						<a className="text-orange-600">{category || ""}</a>
 					</Link>
 					<Link href={`/posts/${id}`}>
-						<a className="text-gray-800"> - {published}</a>
+						<a className="text-gray-800"> - {published || ""}</a>
 					</Link>
 				</div>
 				<div className="title">
