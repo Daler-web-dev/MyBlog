@@ -9,12 +9,14 @@ import Spinner from '../../components/_child/Spinner';
 import Format from '../../Layout/Format';
 import fetcher from '../../lib/fetcher';
 import {getPost} from '../../lib/helper'
+import ReactMarkdown from 'react-markdown'
+import {url} from '../../next.config'
 
 
 export default function Page({ fallback }) {
     const router = useRouter()
 
-    const {arr, isLoading, isError} = fetcher(`/api/articles/${router.query.postid}`)
+    const {arr, isLoading, isError} = fetcher(`/api/articles/${router.query.postid}?populate=img`)
 
 
     if(isLoading) return <Spinner/>
@@ -26,10 +28,10 @@ export default function Page({ fallback }) {
         </SWRConfig>
     )
 
-}    
+}
 
 const Article = ({attributes: {author, img, title, subtitle, description}}) => {
-
+    let coverImage = url + img?.data?.attributes?.url
 
     return (
         <Format>
@@ -47,7 +49,8 @@ const Article = ({attributes: {author, img, title, subtitle, description}}) => {
                     </p>
 
                     <div className="py-10">
-                        <Image src={img || "/images/img1.jpg"} width={900} height={600}  />
+                        <Image loader={() => coverImage} src={coverImage || "/images/img1.jpg"} width={900} height={600} objectFit="cover"
+							objectPosition="center 30%"  />
                     </div>
 
                     <div className="content text-gray-500 text-lg flex flex-col gap-4">
@@ -65,12 +68,11 @@ const Article = ({attributes: {author, img, title, subtitle, description}}) => {
 export async function getStaticProps({params}) {
     const posts = await getPost(params.postid)
 
-
     return {
         props: {
             fallback: {
                 '/api/posts/': posts
-            }
+            },
         }
     }
 }

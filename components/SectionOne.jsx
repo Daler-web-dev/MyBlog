@@ -8,11 +8,11 @@ import "swiper/css";
 import fetcher from "../lib/fetcher";
 import Spinner from "./_child/Spinner";
 import Error from "./_child/Error";
-import {url} from '../next.config'
+import { url } from "../next.config";
 
 
 const SectionOne = () => {
-	const { arr, isLoading, isError } = fetcher("/api/articles");
+	const { arr, isLoading, isError } = fetcher("/api/articles?populate=img");
 
 	if (isLoading) return <Spinner/>;
 	if (isError) return <Error/>;
@@ -50,13 +50,16 @@ const SectionOne = () => {
 };
 
 const Slide = ({id, data: {img, title, subtitle, category, published, author }}) => {
+	let coverImage = url + img?.data?.attributes?.url
+
 	return (
 		<div className="grid md:grid-cols-2 ">
 			<div className="image">
 				<Link href={`/posts/${id}`}>
 					<a>
 						<Image
-							src={img || "/images/myimage.jpg"}
+							loader={() => coverImage}
+							src={coverImage || "/images/myimage.jpg"}
 							alt={""}
 							width={600}
 							height={600}

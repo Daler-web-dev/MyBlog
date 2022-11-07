@@ -1,18 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import fetcher from "../lib/fetcher";
-import { getPost } from "../lib/helper";
 import Author from "./_child/Author";
 import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
-import axios from 'axios'
+import { url } from "../next.config";
 
 const SectionTwo = () => {
-	const {arr, isLoading, isError} = fetcher("/api/articles")
-
-	axios.get('http://localhost:1337/api/upload/files')
-		.then(res => console.log(res))
+	const {arr, isLoading, isError} = fetcher("/api/articles?populate=img")
 
 	if(isLoading) return <Spinner/>
 	if(isError) return <Error/>
@@ -32,16 +27,21 @@ const SectionTwo = () => {
 };
 
 const Post = ({data: {img, title, subtitle, category, published, author}, id}) => {
+	let coverImage = url + img?.data?.attributes?.url
+
 	return (
 		<div className="item">
 			<div className="images">
 				<Link href={`/posts/${id}`}>
 					<a>
 						<Image
-							src={img || "/"}
+							loader={() => coverImage}
+							src={coverImage || "/"}
 							alt={""}
 							width={600}
 							height={350}
+							objectFit="cover"
+							objectPosition="center 30%"
 						/>
 					</a>
 				</Link>
