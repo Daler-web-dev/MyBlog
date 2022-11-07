@@ -18,7 +18,6 @@ export default function Page({ fallback }) {
 
     const {arr, isLoading, isError} = fetcher(`/api/articles/${router.query.postid}?populate=img`)
 
-
     if(isLoading) return <Spinner/>
     if(isError) return <Error/>
 
@@ -53,9 +52,11 @@ const Article = ({attributes: {author, img, title, subtitle, description}}) => {
 							objectPosition="center 30%"  />
                     </div>
 
-                    <div className="content text-gray-500 text-lg flex flex-col gap-4">
-                        {description}
-                    </div>
+                    {/* <div className="content text-gray-500 text-lg flex flex-col gap-4"> */}
+                        <ReactMarkdown>
+                            {description}
+                        </ReactMarkdown>
+                    {/* </div> */}
                 </div>
                 <Related/>
             </section>
