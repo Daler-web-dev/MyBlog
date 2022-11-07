@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import fetcher from "../lib/fetcher";
+import { url } from "../next.config";
 import Author from "./_child/Author";
 import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
 
 const SectionFour = () => {
-	const {data, isLoading, isError} = fetcher("/api/articles")
+	const {arr, isLoading, isError} = fetcher("/api/articles?populate=img")
 
 	if(isLoading) return <Spinner/>
 	if(isError) return <Error/>
@@ -21,7 +22,7 @@ const SectionFour = () => {
 						Business
 					</h1>
 					<div className="flex flex-col gap-6">
-						{data || "" ? data.slice(1,3).map(item => <Post data={item.attributes} />) : <></>}
+						{arr || "" ? arr.slice(1,3).map(item => <Post data={item.attributes} />) : <></>}
 					</div>
 				</div>
 				<div className="item">
@@ -29,7 +30,7 @@ const SectionFour = () => {
 						Travel
 					</h1>
 					<div className="flex flex-col gap-6">
-						{data ? data.slice(3).map(item => <Post data={item.attributes} />) : <></>}
+						{arr ? arr.slice(3).map(item => <Post data={item.attributes} />) : <></>}
 					</div>
 				</div>
 			</div>
@@ -38,8 +39,7 @@ const SectionFour = () => {
 };
 
 const Post = ({data: {id, img, title, subtitle, category, published, author}}) => {
-
-	console.log(img, 'sss');
+	let coverImage = url + img?.data?.attributes?.url
 
 	return (
 		<div className="flex gap-5">
@@ -47,10 +47,12 @@ const Post = ({data: {id, img, title, subtitle, category, published, author}}) =
 				<Link href={"/"}>
 					<a>
 						<Image
-							src={img || "/images/img1.jpg"}
+							loader={() => coverImage}
+							src={coverImage || "/"}
 							className="rounded"
 							width={300}
 							height={250}
+							objectFit="cover"
 						/>
 					</a>
 				</Link>

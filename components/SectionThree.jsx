@@ -3,11 +3,12 @@ import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import fetcher from "../lib/fetcher";
+import { url } from "../next.config";
 import Author from "./_child/Author";
 import Spinner from "./_child/Spinner";
 
 const SectionThree = () => {
-	const { data, isLoading, isError } = fetcher("/api/articles");
+	const { arr, isLoading, isError } = fetcher("/api/articles?populate=img");
 
 	if (isLoading) return <Spinner></Spinner>;
 	if (isError) return <Error></Error>;
@@ -27,9 +28,9 @@ const SectionThree = () => {
 					},
 				}}
 			>
-				{data ? data.map((value, index) => (
+				{arr ? arr.map((value, index) => (
 					<SwiperSlide key={index}>
-						<Post data={value}></Post>
+						<Post data={value.attributes}></Post>
 					</SwiperSlide>
 				)) : ""}
 			</Swiper>
@@ -40,13 +41,18 @@ const SectionThree = () => {
 const Post = ({
 	data: { id, img, title, subtitle, category, published, author },
 }) => {
+	console.log(img);
+
+	let coverImage = url + img?.data?.attributes?.url
+
 	return (
 		<div className="grid">
 			<div className="images">
 				<Link href={"/"}>
 					<a className="rounded">
 						<Image
-							src={img || "/"}
+							loader={() => coverImage} 
+							src={coverImage || "/images/img1.jpg"}
 							alt={""}
 							width={600}
 							height={400}
