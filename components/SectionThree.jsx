@@ -5,13 +5,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import fetcher from "../lib/fetcher";
 import { url } from "../next.config";
 import Author from "./_child/Author";
+import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
 
 const SectionThree = () => {
 	const { arr, isLoading, isError } = fetcher("/api/articles?populate=img");
 
-	if (isLoading) return <Spinner></Spinner>;
-	if (isError) return <Error></Error>;
+	if (isLoading) return (<Spinner/>);
+	if (isError) return (<Error/>);
 
 	return (
 		<section className="container mx-auto md:px-20 py-16">
@@ -32,7 +33,7 @@ const SectionThree = () => {
 					<SwiperSlide key={index}>
 						<Post data={value.attributes}></Post>
 					</SwiperSlide>
-				)) : ""}
+				)) : <Spinner/>}
 			</Swiper>
 		</section>
 	);
@@ -41,7 +42,6 @@ const SectionThree = () => {
 const Post = ({
 	data: { id, img, title, subtitle, category, published, author },
 }) => {
-	console.log(img);
 
 	let coverImage = url + img?.data?.attributes?.url
 

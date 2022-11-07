@@ -10,8 +10,8 @@ import Spinner from "./_child/Spinner";
 const SectionFour = () => {
 	const {arr, isLoading, isError} = fetcher("/api/articles?populate=img")
 
-	if(isLoading) return <Spinner/>
-	if(isError) return <Error/>
+	if(isLoading) return (<Spinner/>)
+	if(isError) return (<Error/>)
 
 
 	return (
@@ -22,7 +22,7 @@ const SectionFour = () => {
 						Business
 					</h1>
 					<div className="flex flex-col gap-6">
-						{arr || "" ? arr.slice(1,3).map(item => <Post data={item.attributes} />) : <></>}
+						{arr ? arr.slice(1,3).map(item => <Post data={item.attributes} />) : <Spinner/>}
 					</div>
 				</div>
 				<div className="item">
@@ -30,7 +30,7 @@ const SectionFour = () => {
 						Travel
 					</h1>
 					<div className="flex flex-col gap-6">
-						{arr ? arr.slice(3).map(item => <Post data={item.attributes} />) : <></>}
+						{arr ? arr.slice(3).map(item => <Post data={item.attributes} />) : <Spinner/>}
 					</div>
 				</div>
 			</div>

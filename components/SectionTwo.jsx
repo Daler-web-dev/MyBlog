@@ -9,8 +9,8 @@ import { url } from "../next.config";
 const SectionTwo = () => {
 	const {arr, isLoading, isError} = fetcher("/api/articles?populate=img")
 
-	if(isLoading) return <Spinner/>
-	if(isError) return <Error/>
+	if(isLoading) return (<Spinner/>)
+	if(isError) return (<Error/>)
 
 	return (
 		<div className="container mx-auto md:px-20 py-10">
@@ -19,7 +19,7 @@ const SectionTwo = () => {
 			</h1>
 			<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
 				{
-					arr ? arr.map((item, index) => <Post data={item.attributes} id={item.id} key={index} />) : ""
+					arr ? arr.map((item, index) => <Post data={item.attributes} id={item.id} key={index} />) : <Spinner/>
 				}
             </div>
 		</div>
@@ -28,6 +28,7 @@ const SectionTwo = () => {
 
 const Post = ({data: {img, title, subtitle, category, published, author}, id}) => {
 	let coverImage = url + img?.data?.attributes?.url
+
 
 	return (
 		<div className="item">

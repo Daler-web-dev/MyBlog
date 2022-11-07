@@ -14,8 +14,8 @@ import { url } from "../next.config";
 const SectionOne = () => {
 	const { arr, isLoading, isError } = fetcher("/api/articles?populate=img");
 
-	if (isLoading) return <Spinner/>;
-	if (isError) return <Error/>;
+	if (isLoading) return (<Spinner/>);
+	if (isError) return (<Error/>);
 
 	SwiperCore.use([Autoplay]);
 
@@ -42,7 +42,7 @@ const SectionOne = () => {
 						<SwiperSlide key={index}>
 							<Slide id={value.id} data={value.attributes}></Slide>
 						</SwiperSlide>
-					)) : ""}
+					)) : <Spinner/>}
 				</Swiper>
 			</div>
 		</section>
