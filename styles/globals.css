@@ -37,3 +37,38 @@ h1 {
   font-size: 55px;
   text-transform: capitalize;
 }
+
+
+pre {
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px #c4c4c4;
+  border-radius: 14px;
+  margin: 20px 0px;
+}
+
+pre code {
+  color: black;
+}
+
+
+.content a {
+  color: blue;
+  text-transform: capitalize;
+}
+.content a:hover {
+  text-decoration: underline;
+}
+.content ol {
+  margin-left: 20px;
+}
+
+.content img {
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.content strong {
+  color: red;
+}

@@ -52,11 +52,11 @@ const Article = ({attributes: {author, img, title, subtitle, description}}) => {
 							objectPosition="center 30%"  />
                     </div>
 
-                    {/* <div className="content text-gray-500 text-lg flex flex-col gap-4"> */}
+                    <div className="content text-gray-500 text-lg flex flex-col gap-4">
                         <ReactMarkdown>
                             {description}
                         </ReactMarkdown>
-                    {/* </div> */}
+                    </div>
                 </div>
                 <Related/>
             </section>
