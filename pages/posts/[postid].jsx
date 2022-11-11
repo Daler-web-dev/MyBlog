@@ -1,30 +1,23 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React from 'react';
-import { SWRConfig } from 'swr';
 import Author from '../../components/_child/Author';
 import Error from '../../components/_child/Error';
 import Related from '../../components/_child/Related';
 import Spinner from '../../components/_child/Spinner';
 import Format from '../../Layout/Format';
-import fetcher from '../../lib/fetcher';
-import {getPost} from '../../lib/helper'
 import ReactMarkdown from 'react-markdown'
 import {url} from '../../next.config'
 
 
-export default function Page({ fallback }) {
-    const router = useRouter()
+export default function Page({article}) {
+    console.log(article);
 
-    const {arr, isLoading, isError} = fetcher(`/api/articles/${router.query.postid}?populate=img`)
-
-    if(isLoading) return <Spinner/>
-    if(isError) return <Error/>
+    // if(article) return <Spinner/>
+    if(article?.error) return <Error/>
+    else if (!article) return <Error/>
 
     return (
-        <SWRConfig value={{ fallback }} >
-            <Article {...arr} />
-        </SWRConfig>
+        <Article {...article.data} />
     )
 
 }
@@ -64,36 +57,13 @@ const Article = ({attributes: {author, img, title, subtitle, description}}) => {
     );
 };
 
-// export default Page;
+export const getServerSideProps = async ({ query }) => {
+    const router = query.postid;
 
-export async function getStaticProps({params}) {
-    const posts = await getPost(params.postid)
-
-    return {
-        props: {
-            fallback: {
-                '/api/posts/': posts
-            },
-        }
-    }
-}
-  
-export async function getStaticPaths() {
-    const post = await getPost()
-
-    const paths = post.map(item => {
-        return {
-            params: {
-                postid: item.id.toString()
-            }
-        }
-    })
+    const res = await fetch(url + `/api/articles/${router}?populate=img`);
+    const stylesheet = await res.json(); 
 
     return {
-        paths, 
-        fallback: false
-    }
-}
-
-
-
+        props: { article: stylesheet }
+    };
+};
