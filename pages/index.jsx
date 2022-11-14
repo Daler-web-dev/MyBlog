@@ -13,7 +13,7 @@ const Home = () => {
 			<SectionOne />
 			<SectionTwo />
 			<SectionThree />
-			<SectionFour />
+			{/* <SectionFour /> */}
 		</Format>
 	);
 };

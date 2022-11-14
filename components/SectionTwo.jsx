@@ -13,7 +13,7 @@ const SectionTwo = () => {
 	if(isError) return (<Error/>)
 
 	return (
-		<div className="container mx-auto md:px-20 py-10">
+		<div className="container mx-auto md:px-20 py-10 p-4">
 			<h1 className="font-bold text-4xl py-12 text-center">
 				Latest Posts
 			</h1>

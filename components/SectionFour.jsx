@@ -15,7 +15,7 @@ const SectionFour = () => {
 
 
 	return (
-		<section className="container mx-auto md:px-20 py-16">
+		<section className="container mx-auto md:px-20 py-16 p-4">
 			<div className="grid lg:grid-cols-2">
 				<div className="item">
 					<h1 className="font-bold text-4xl py-12 text-start">
@@ -43,7 +43,7 @@ const Post = ({data: {id, img, title, subtitle, category, published, author}}) =
 
 	return (
 		<div className="flex gap-5">
-			<div className="images flex-flex-col jusify-start">
+			<div className="images flex-flex-col jusify-start min-w-30px max-w-40">
 				<Link href={"/"}>
 					<a>
 						<Image

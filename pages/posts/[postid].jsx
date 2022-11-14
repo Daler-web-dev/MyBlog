@@ -26,7 +26,7 @@ const Article = ({attributes: {author, img, title, subtitle, description}}) => {
 
     return (
         <Format>
-            <section className="container mx-auto md:px-2 py-16 w-1/2" >
+            <section className="container mx-auto md:px-2 py-16 w-2/2 p-4" >
                 <div className='flex justify-center'>
                     {author ? <Author {...author} /> : <></>}
                 </div>

@@ -25,7 +25,7 @@ const SectionOne = () => {
 	};
 
 	return (
-		<section className="py-16" style={bg}>
+		<section className="py-16 p-4" >
 			<div className="container mx-auto md:px-20">
 				<h1 className="font-bold text-4xl pb-12 text-center">
 					Trending
@@ -35,7 +35,7 @@ const SectionOne = () => {
 					slidesPerView={1}
 					loop={true}
 					autoplay= {{
-					    delay: 2000
+					    delay: 4000
 					}}
 				>
 					{arr ? arr.map((value, index) => (
@@ -77,7 +77,7 @@ const Slide = ({id, data: {img, title, subtitle, category, published, author }})
 					</Link>
 					<Link href={`/posts/${id}`}>
 						<a className="text-gray-800">
-							{published || "unknown"}
+							 - {published || "unknown"}
 						</a>
 					</Link>
 				</div>
