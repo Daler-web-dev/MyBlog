@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import fetcher from "../lib/fetcher";
+import useFetcher from "../lib/useFetcher";
 import { url } from "../next.config";
 import Author from "./_child/Author";
 import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
 
 const SectionThree = () => {
-	const { arr, isLoading, isError } = fetcher("/api/articles?populate=img");
+	const { arr, isLoading, isError } = useFetcher("/api/articles?populate=img");
 
 	if (isLoading) return (<Spinner/>);
 	if (isError) return (<Error/>);

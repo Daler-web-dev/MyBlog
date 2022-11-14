@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import fetcher from "../lib/fetcher";
+import useFetcher from "../lib/useFetcher";
 import Author from "./_child/Author";
 import Error from "./_child/Error";
 import Spinner from "./_child/Spinner";
 import { url } from "../next.config";
 
 const SectionTwo = () => {
-	const {arr, isLoading, isError} = fetcher("/api/articles?populate=img")
+	const {arr, isLoading, isError} = useFetcher("/api/articles?populate=img")
 
 	if(isLoading) return (<Spinner/>)
 	if(isError) return (<Error/>)

@@ -5,14 +5,14 @@ import Author from "./_child/Author";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper";
 import "swiper/css";
-import fetcher from "../lib/fetcher";
+import useFetcher from "../lib/useFetcher";
 import Spinner from "./_child/Spinner";
 import Error from "./_child/Error";
 import { url } from "../next.config";
 
 
 const SectionOne = () => {
-	const { arr, isLoading, isError } = fetcher("/api/articles?populate=img");
+	const { arr, isLoading, isError } = useFetcher("/api/articles?populate=img");
 
 	if (isLoading) return (<Spinner/>);
 	if (isError) return (<Error/>);
