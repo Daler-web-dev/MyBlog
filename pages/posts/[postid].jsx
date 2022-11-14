@@ -10,7 +10,6 @@ import {url} from '../../next.config'
 
 
 export default function Page({article}) {
-    console.log(article);
 
     // if(article) return <Spinner/>
     if(article?.error) return <Error/>

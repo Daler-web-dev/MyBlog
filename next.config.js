@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-const production = process.env.NODE_ENV === "production";
+const production = process.env.NODE_ENV === "development";
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   url: production
-  ? "http://www.yoursite.com"
+  ? "https://sheltered-inlet-25566.herokuapp.com"
   : "http://localhost:1337",
   images: {
     formats: ['image/avif', 'image/webp'],

@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import fetcher from "../../lib/fetcher";
+import { url } from "../../next.config";
 import Author from "./Author";
 import Error from "./Error";
 import Spinner from "./Spinner";
 
 const Related = () => {
-	const {data, isLoading, isError} = fetcher("/api/articles")
+	const {arr, isLoading, isError} = fetcher("/api/articles?populate=img")
 
 	if(isLoading) return <Spinner/>
 	if(isError) return <Error/>
@@ -17,23 +18,28 @@ const Related = () => {
 			<h1 className="font-bold text-4xl py-12 text-start">Related</h1>
 
 			<div className="flex flex-col gap-10">
-				{ data ? data.map((item, index) => <Post key={index} data={item} />) : ""}
+				{ arr ? arr.map((item, index) => <Post key={index} data={item.attributes} />) : ""}
             </div>
 		</section>
 	);
 };
 
-const Post = ({data: {id, img, title, subtitle, category, published, author}}) => {
+const Post = ({id, data: {img, title, subtitle, category, published, author }}) => {
+	let coverImage = url + img?.data?.attributes?.url
+
 	return (
 		<div className="flex gap-5">
 			<div className="images flex-flex-col jusify-start">
 				<Link href={"/"}>
 					<a>
 						<Image
-							src={img || "/images/img1.jpg"}
+							loader={() => coverImage}
+							src={coverImage || "/images/img1.jpg"}
 							className="rounded"
 							width={300}
 							height={200}
+							objectFit="cover"
+							objectPosition="0 30%"
 						/>
 					</a>
 				</Link>

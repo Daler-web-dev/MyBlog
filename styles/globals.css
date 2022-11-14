@@ -36,6 +36,7 @@ a {
 h1 {
   font-size: 55px;
   text-transform: capitalize;
+  line-height: 55px;
 }
 
 
