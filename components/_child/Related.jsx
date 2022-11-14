@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import useFetcher from "../../lib/useFetche";
+import useFetcher from "../../lib/useFetcher";
 import { url } from "../../next.config";
 import Author from "./Author";
 import Error from "./Error";
