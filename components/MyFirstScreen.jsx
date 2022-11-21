@@ -3,7 +3,7 @@ import React from 'react';
 const MyFirstScreen = () => {
     return (
         <section className="bg-[#0A0A0A] h-[80vh] p-20" >
-            <div className="flex justify-between">
+            <div className="first-screen flex justify-between">
                 <h1 className="text-[76px] text-[#fff] line-hright-[77px]" >
                     Never stop learning
                 </h1>
@@ -12,7 +12,7 @@ const MyFirstScreen = () => {
                 </p>
                 <div></div>
             </div>
-            <div className="img-block"></div>
+            <div className="first-screen img-block"></div>
         </section>
     );
 };
