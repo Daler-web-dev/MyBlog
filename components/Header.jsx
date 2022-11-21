@@ -1,27 +1,24 @@
-import { ImFacebook, ImTwitter, ImYoutube } from 'react-icons/im';
+import { ImGithub, ImLinkedin, ImInstagram } from 'react-icons/im';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Header = () => {
     return (
-        <header className="bg-gray-50">
-        <div className="xl:container xl:mx-auto flex flex-col items-center sm:flex-row sm:justify-between text-center py-3">
-            <div className="md:flex-none w-96 order-2 sm:order-1 flex justify-center py-4 sm:py-0">
-                <input type="text" className="input-text"  placeholder="Search..."/>
-            </div>
-            <div className="shrink w-80 sm:order-2">
-                <Link href={"/"}>
-                    <a className="font-bold uppercase text-3xl">Daler Sharifkulov</a>
-                </Link>
-            </div>
-            <div className="w-96 order-3 flex justify-center">
-                <div className="flex gap-6">
-                    <Link href={"/"}><a><ImFacebook color="#888888" /></a></Link>
-                    <Link href={"/"}><a><ImTwitter color="#888888" /></a></Link>                    
-                    <Link href={"/"}><a><ImYoutube color="#888888" /></a></Link>
-                </div>
-            </div>
-        </div>
-    </header>
+        <header className="bg-[#0A0A0A] w-2/2 flex justify-between p-5 items-center pl-20 pr-20 border-b">
+            <Image src="" alt="My Logo" />
+            {/* <input type="text" /> */}
+            <nav className="sm:disabled:none  flex items-center gap-3">
+                <a className="link-a" href="#">Blog</a>
+                <a className="link-a" href="#">Events</a>
+                <a className="link-a" href="#">About Me</a>
+                <a className="link-a" href="#">Projects</a>
+            </nav>
+            <nav className="flex items-center gap-4">
+                <Link href={"#"} ><a href="#" ><ImGithub color='#fff' size="25" /></a></Link>
+                <Link href={"#"} ><a href="#" ><ImLinkedin color='#fff' size="25" /></a></Link>
+                <Link href={"#"} ><a href="#" ><ImInstagram color='#fff' size="25" /></a></Link>
+            </nav>
+        </header>
     );
 };
 
