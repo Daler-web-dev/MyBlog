@@ -14,9 +14,9 @@ const Header = () => {
                 <a className="link-a" href="#">Projects</a>
             </nav>
             <nav className="flex items-center gap-4">
-                <Link href={"#"} ><a href="#" ><ImGithub color='#fff' size="25" /></a></Link>
-                <Link href={"#"} ><a href="#" ><ImLinkedin color='#fff' size="25" /></a></Link>
-                <Link href={"#"} ><a href="#" ><ImInstagram color='#fff' size="25" /></a></Link>
+                <Link href={"https://github.com/Daler-web-dev"} ><a href="https://github.com/Daler-web-dev" ><ImGithub color='#fff' size="25" /></a></Link>
+                <Link href={"https://www.linkedin.com/in/daler-sharifkulov-34a855214/"} ><a href="https://www.linkedin.com/in/daler-sharifkulov-34a855214/" ><ImLinkedin color='#fff' size="25" /></a></Link>
+                <Link href={"https://www.instagram.com/daler.sharifkulov/"} ><a href="https://www.instagram.com/daler.sharifkulov/" ><ImInstagram color='#fff' size="25" /></a></Link>
             </nav>
         </header>
     );
