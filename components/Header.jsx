@@ -1,13 +1,18 @@
 import { ImGithub, ImLinkedin, ImInstagram } from 'react-icons/im';
+import { AiOutlineMenuUnfold } from 'react-icons/ai';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Header = () => {
     return (
-        <header className="bg-[#0A0A0A] w-2/2 flex justify-between p-5 items-center pl-20 pr-20 border-b">
+        <header className="bg-[#0A0A0A] w-2/2 flex justify-between py-5 px-4 md:px-20 items-center  border-b">
+            <button className="md:hidden" >
+                <AiOutlineMenuUnfold color='white' size="28"/>
+            </button>
             <Image src="" alt="My Logo" />
             {/* <input type="text" /> */}
-            <nav className="sm:disabled:none  flex items-center gap-3">
+            <nav className="hidden md:flex items-center gap-3 ">
                 <a className="link-a" href="#">Blog</a>
                 <a className="link-a" href="#">Events</a>
                 <a className="link-a" href="#">About Me</a>

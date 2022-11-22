@@ -84,6 +84,7 @@ pre code {
   background-image: url('/images/progprogprog.avif');
   background-repeat: no-repeat;
   background-position: 0px 50%;
+  background-size: cover;
   margin-top: 50px !important;
 }
 
@@ -91,3 +92,9 @@ pre code {
   max-width: 1920px;
   margin: 0 auto;
 }
+
+/* h1 {
+  background: linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
