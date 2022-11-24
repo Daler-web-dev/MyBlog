@@ -4,16 +4,14 @@ import { BiWindowClose } from "react-icons/bi";
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Header = () => {
-    const [isOpen, setIsOpen] = useState(false)
-
-
-
+	const [isOpen, setIsOpen] = useState(false);
+	
 	return (
 		<header className="bg-[#0A0A0A] w-2/2 flex justify-between py-5 px-4 md:px-20 items-center relative border-b">
-			<button className="md:hidden" onClick={() => setIsOpen(!isOpen)} >
+			<button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
 				<AiOutlineMenuUnfold color="white" size="28" />
 			</button>
 			<Image src="" alt="My Logo" />
@@ -33,33 +31,15 @@ const Header = () => {
 				</a>
 			</nav>
 			<Socials size="25" />
-			<div className={`w-[100%] h-[100vh] bg-[rgba(0,0,0,.7)] backdrop-blur-xl fixed top-0 left-0 bottom-0 z-10 p-10 md:hidden ${isOpen ? "" : "hidden"}`}>
-				<button className="absolute right-10" onClick={() => setIsOpen(!isOpen)} >
-					<BiWindowClose color="white" size="35" />
-				</button>
-				<nav className="text-[#fff] text-[34px] flex flex-col gap-4 mt-10">
-					<Link href={""}>
-						<a href="#">Blog</a>
-					</Link>
-					<Link href={""}>
-						<a href="#">Events</a>
-					</Link>
-					<Link href={""}>
-						<a href="#">About Me</a>
-					</Link>
-					<Link href={""}>
-						<a href="#">Projects</a>
-					</Link>
-				</nav>
-                <div className="absolute bottom-[200px] left-[50%]  translate-x-[-50%]" >
-                    <Socials size="35" />
-                </div>
-			</div>
+			<MenuWindow
+				isOpen={isOpen}
+				setIsOpen={setIsOpen}
+			/>
 		</header>
 	);
 };
 
-const Socials = ({size}) => {
+const Socials = ({ size }) => {
 	return (
 		<nav className="flex items-center gap-4">
 			<Link href={"https://github.com/Daler-web-dev"}>
@@ -82,6 +62,40 @@ const Socials = ({size}) => {
 				</a>
 			</Link>
 		</nav>
+	);
+};
+
+const MenuWindow = ({ isOpen, setIsOpen}) => {
+	return (
+		<div
+			className={`modal ${
+				isOpen ? "modal-active" : ""
+			}`}
+		>
+			<button
+				className="absolute right-10"
+				onClick={() => setIsOpen(!isOpen)}
+			>
+				<BiWindowClose color="white" size="35" />
+			</button>
+			<nav className="text-[#fff] text-[34px] flex flex-col gap-4 mt-10">
+				<Link href={""}>
+					<a href="#">Blog</a>
+				</Link>
+				<Link href={""}>
+					<a href="#">Events</a>
+				</Link>
+				<Link href={""}>
+					<a href="#">About Me</a>
+				</Link>
+				<Link href={""}>
+					<a href="#">Projects</a>
+				</Link>
+			</nav>
+			<div className="absolute bottom-[200px] left-[50%]  translate-x-[-50%]">
+				<Socials size="35" />
+			</div>
+		</div>
 	);
 };
 

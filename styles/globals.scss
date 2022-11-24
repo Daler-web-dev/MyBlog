@@ -51,11 +51,11 @@ pre {
   box-shadow: 0px 0px 10px #c4c4c4;
   border-radius: 14px;
   margin: 20px 0px;
+  code {
+    color: black;
+  }
 }
 
-pre code {
-  color: black;
-}
 
 
 .content a {
@@ -91,6 +91,21 @@ pre code {
 .first-screen {
   max-width: 1920px;
   margin: 0 auto;
+}
+
+.modal {
+  @apply w-[100%] h-[100vh] bg-[rgba(0,0,0,.7)] backdrop-blur-xl fixed top-0 left-0 bottom-0 z-10 p-10 transition-opacity hidden md:hidden ;
+}
+
+.modal-active {
+  @apply opacity-100 block
+}
+
+
+.dark {
+  body {
+    background-color: #c4c4c4;
+  }
 }
 
 /* h1 {

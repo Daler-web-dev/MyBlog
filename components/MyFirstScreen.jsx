@@ -1,4 +1,5 @@
 import React from 'react';
+import DarkMode from './_child/DarkMode';
 
 const MyFirstScreen = () => {
     return (
@@ -6,6 +7,7 @@ const MyFirstScreen = () => {
             <div className="first-screen flex flex-col md:flex-row justify-between">
                 <h1 className="text-[26px] text-[#fff] leading-7 md:text-[76px] md:leading-[60px] mb-2" >
                     Never stop learning
+                    <DarkMode/>
                 </h1>
                 <p className="text-[#fff] text-[14px] md:text-[22px] md:w-[90%] " >
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque cupiditate dolorum pariatur alias numquam recusandae iure distinctio, doloremque est ipsam odit illo, nesciunt, expedita eum! Ut a fugiat aliquam sit.
