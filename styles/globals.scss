@@ -6,6 +6,7 @@
 
 * > * {
   font-family: 'Poppins', sans-serif;
+  transition: .5s ease;
 }
 
 body {
@@ -109,8 +110,18 @@ pre {
 
 .dark {
   body {
-    background-color: #c4c4c4;
+    background-color: #0F131E;
   }
+  span, h1, h2, h3, h4, h5, h6, p, b {
+    color: #7C8392 !important;
+  }
+  footer, footer .newsletter {
+    background-color: #181E2A;
+    input {
+      background-color: transparent;
+    }
+  }
+
 }
 
 .darkModeBtn {
