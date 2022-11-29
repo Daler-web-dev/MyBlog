@@ -6,6 +6,7 @@ import SectionThree from "../components/SectionThree";
 import SectionFour from "../components/SectionFour";
 import MyFirstScreen from "../components/MyFirstScreen";
 import { useEffect } from "react";
+import DarkMode from "../components/_child/DarkMode";
 
 const Home = () => {
 	useEffect(() => {
@@ -24,6 +25,7 @@ const Home = () => {
 		<Format>
 			<MyFirstScreen />
 			{/* <SectionOne /> */}
+			<DarkMode/>
 			<SectionTwo />
 			<SectionThree />
 			{/* <SectionFour /> */}

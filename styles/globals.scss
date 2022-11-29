@@ -8,6 +8,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  transition: .5s ease;
+  background-color: #fff;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -108,8 +113,23 @@ pre {
   }
 }
 
-/* h1 {
-  background: linear-gradient(#eee, #333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
+.darkModeBtn {
+  position: sticky;
+  top: 40px;
+  right: 0px !important;
+  width: 100%;
+  padding-right: 20px;
+  button {
+    float: right;
+    background-color: rgb(40, 30, 216, .8);
+    backdrop-filter: blur(10px);
+    transition: 0.5s ease;
+    &:hover {
+      background-color: rgba(12, 0, 247, 0.4);
+    }
+    &:focus {
+      border-color: transparent !important;
+      box-shadow: none;
+    }
+  }
+}
