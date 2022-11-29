@@ -112,10 +112,10 @@ pre {
   body {
     background-color: #0F131E;
   }
-  span, h1, h2, h3, h4, h5, h6, p, b {
-    color: #7C8392 !important;
+  span, h1, h2, h3, h4, h5, h6, p, b, a {
+    color: #b8bbc3 !important;
   }
-  footer, footer .newsletter {
+  footer, footer .newsletter, header {
     background-color: #181E2A;
     input {
       background-color: transparent;
