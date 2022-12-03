@@ -14,21 +14,22 @@ const Header = () => {
 			<button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
 				<AiOutlineMenuUnfold color="white" size="28" />
 			</button>
-			<Image src="" alt="My Logo" />
+			<div></div>
+			{/* <Image src="" alt="My Logo" /> */}
 			{/* <input type="text" /> */}
 			<nav className="hidden md:flex items-center gap-3 ">
-				<a className="link-a" href="#">
-					Blog
-				</a>
-				<a className="link-a" href="#">
-					Events
-				</a>
-				<a className="link-a" href="#">
-					About Me
-				</a>
-				<a className="link-a" href="#">
-					Projects
-				</a>
+				<Link href={"/blog"} >
+					<a className="link-a">Blog</a>
+				</Link>
+				<Link href={""} >
+					<a className="link-a">Events</a>
+				</Link>
+				<Link href={""} >
+					<a className="link-a">About Me</a>
+				</Link>
+				<Link href={""} >
+					<a className="link-a">Projects</a>
+				</Link>
 			</nav>
 			<Socials size="25" />
 			<MenuWindow
