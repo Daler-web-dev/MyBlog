@@ -123,6 +123,19 @@ pre {
     }
   }
 
+  .motivation {
+    color: #E8417C !important;
+  }
+
+  .tag {
+    color: #0F131E !important;
+    &:hover {
+      background-color: #E8417C;
+      filter: invert(0);
+      color: #fff !important;
+    }
+  }
+
 }
 
 .darkModeBtn {
@@ -131,6 +144,7 @@ pre {
   right: 0px !important;
   width: 100%;
   padding-right: 20px;
+  z-index: 1000;
   button {
     float: right;
     background-color: rgb(40, 30, 216, .8);
@@ -144,6 +158,22 @@ pre {
       box-shadow: none;
     }
   }
+}
+
+.tag {
+  @apply bg-blue-100 text-blue-800 text-xs font-semibold px-4 py-2 rounded dark:bg-blue-200 dark:text-blue-800 cursor-pointer hover:invert-[20%]
+}
+
+.motivation {
+  color: #E8417C !important;
+}
+
+.container-grid {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
 }
 
 @media screen and (max-width: 400px) {

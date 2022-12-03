@@ -80,7 +80,7 @@ const MenuWindow = ({ isOpen, setIsOpen}) => {
 				<BiWindowClose color="white" size="35" />
 			</button>
 			<nav className="text-[#fff] text-[34px] flex flex-col gap-4 mt-10">
-				<Link href={""}>
+				<Link href={"/blog"}>
 					<a href="#">Blog</a>
 				</Link>
 				<Link href={""}>
