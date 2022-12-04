@@ -10,7 +10,7 @@ const Footer = () => {
     }
 
     return (
-        <footer className="bg-gray-50" style={bg} >
+        <footer className="bg-gray-50 w-max-[1920px]" style={bg} >
             <Newsletter/>
 
             <div className="container mx-auto flex justify-center py-12" >

@@ -10,11 +10,11 @@ const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	
 	return (
-		<header className="bg-[#0A0A0A] w-2/2 flex justify-between py-5 px-4 md:px-20 items-center relative border-b">
+		<header className="bg-[#0A0A0A] w-2/2 flex justify-between py-5 px-4 md:px-20 items-center relative border-b max-w-[1920px] mx-auto">
 			<button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
 				<AiOutlineMenuUnfold color="white" size="28" />
 			</button>
-			<div></div>
+			<div className="w-[200px]" ></div>
 			{/* <Image src="" alt="My Logo" /> */}
 			{/* <input type="text" /> */}
 			<nav className="hidden md:flex items-center gap-3 ">

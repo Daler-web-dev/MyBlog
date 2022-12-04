@@ -10,7 +10,7 @@ const Format = ({children}) =>{
             </Head>
             
             <Header></Header>
-            <main>
+            <main className="max-w-[1920px] mx-auto" >
                 {children}
             </main>
             <Footer></Footer>

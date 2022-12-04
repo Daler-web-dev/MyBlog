@@ -3,7 +3,7 @@ import DarkMode from './_child/DarkMode';
 
 const MyFirstScreen = () => {
     return (
-        <section className="bg-[#0A0A0A] h-[80vh] py-10 px-3 md:mb-[100px] md:px-10 ">
+        <section className="bg-[#0A0A0A] h-[80vh] py-10 px-3 md:mb-[100px] md:px-10 max-h-[1080px] ">
             <div className="first-screen flex flex-col md:flex-row justify-between">
                 <h1 className="text-[26px] text-[#fff] leading-7 md:text-[76px] md:leading-[60px] mb-2" >
                     Never stop learning
