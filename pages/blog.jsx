@@ -1,11 +1,29 @@
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import Author from "../components/_child/Author";
 import DarkMode from "../components/_child/DarkMode";
+import Error from "../components/_child/Error";
+import Spinner from "../components/_child/Spinner";
 import Format from "../Layout/Format";
+import useFetcher from "../lib/useFetcher";
+import { url } from "../next.config";
+
 
 const blog = () => {
+	const [filteredData, setFilteredData] = useState([])
+	const {arr, isLoading, isError} = useFetcher("/api/articles?populate=img")
+
+
+	if(isLoading) return (<Spinner/>)
+	if(isError) return (<Error/>)
+
+
+	const filterData = (category) => {
+		
+	}
+
+
 	return (
 		<Format>
 			<DarkMode />
@@ -24,39 +42,44 @@ const blog = () => {
 						"Next Js",
 						"Node Js",
 					].map((item, index) => (
-						<span key={index} className="tag">
+						<span key={index} className="tag" onClick={() => filterData(item)} >
 							{item}
 						</span>
 					))}
 				</div>
 			</center>
 			<section className="container-grid">
-                {[1,2,3,4,5,6].map(item => <BlogItem/>)}
+                {
+					arr.map(item => <BlogItem key={item.id} {...item} id={item.id} />)
+				}
             </section>
 		</Format>
 	);
 };
 
-const BlogItem = () => {
+const BlogItem = ({attributes, id}) => {
+	let coverImage = url + attributes.img?.data?.attributes?.url
+
 	return (
 		<div className="flex flex-col rounded-t-[30px] bg-black overflow-hidden">
-            <Link href={"#"} >
+            <Link href={`/posts/${id}`} >
                 <img
-                    src="/images/img3.png"
+                    src={coverImage || "/images/img3.png"}
                     alt=""
-                    className="sm:h-[200px] md:h-[400px] object-cover"
+                    className="sm:h-[200px] md:h-[400px] object-cover cursor-pointer "
                 />
             </Link>
 			<div className="bottom-info  bg-[#1E5C8F] p-5 text-white">
-                <Link href={"#"} >
-                    <div>
-                        <h3 className="text-[24px]  " >Course how to kill</h3>
-                        <span>I am joking</span>
+                <Link href={`/posts/${id}`} >
+                    <div className="cursor-pointer" >
+                        <h3 className="text-[24px] truncate text-elipsis overflow-hidden ..." >{attributes.title || "No title" }</h3>
+                        <span>{attributes.published || "No published"}</span>
                     </div>
                 </Link>
 
 				<div className="flex justify-between items-center">
-					<Author col="text-white" /> <span className="tag h-[100%]">Category</span>
+					{attributes.author ? <Author col="text-white" {...attributes.author} /> : <></>}
+					<span className="tag h-[100%]">{attributes.category || "No category"}</span>
 				</div>
 			</div>
 		</div>
