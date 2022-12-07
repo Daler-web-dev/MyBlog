@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Author from "../../components/_child/Author";
 import Error from "../../components/_child/Error";
 import Related from "../../components/_child/Related";
@@ -8,17 +8,25 @@ import Format from "../../Layout/Format";
 import ReactMarkdown from "react-markdown";
 import { url } from "../../next.config";
 import DarkMode from "../../components/_child/DarkMode";
+import Code from "../../components/_child/Code";
+import {serialize} from 'next-mdx-remote/serialize'
+import { MDXRemote } from "next-mdx-remote";
+import rehypePrism from 'rehype-prism-plus';
+import rehypeCodeTitles from 'rehype-code-titles';
 
-export default function Page({ article }) {
+
+
+export default function Page({ article, html }) {
+	console.log(article);
 	// if(article) return <Spinner/>
 	if (article?.error) return <Error />;
 	else if (!article) return <Error />;
 
-	return <Article {...article.data} />;
+	return <Article {...article.data} html={html} />;
 }
 
 const Article = ({
-	attributes: { author, img, title, subtitle, description },
+	attributes: { author, img, title, subtitle, description }, html
 }) => {
 	let coverImage = url + img?.data?.attributes?.url;
 
@@ -50,7 +58,12 @@ const Article = ({
 					</div>
 
 					<div className="content text-gray-500 text-lg flex flex-col gap-4 w-2/2 ">
-						<ReactMarkdown>{description}</ReactMarkdown>
+						<MDXRemote {...html} />
+						{/* { */}
+							{/* // !html ? null : <MDXRemote {...html} /> */}
+						{/* } */}
+						{/* <ReactMarkdown>{html}</ReactMarkdown> */}
+						{/* <Code/> */}
 					</div>
 				</div>
 				<Related />
@@ -65,7 +78,16 @@ export const getServerSideProps = async ({ query }) => {
 	const res = await fetch(url + `/api/articles/${router}?populate=img`);
 	const stylesheet = await res.json();
 
+	const attr = stylesheet.data.attributes
+
+	const html = await serialize(attr.description, { mdxOptions: {
+        rehypePlugins: [
+            rehypeCodeTitles,
+            rehypePrism
+        ]
+    } })
+
 	return {
-		props: { article: stylesheet },
+		props: { article: stylesheet, html },
 	};
 };

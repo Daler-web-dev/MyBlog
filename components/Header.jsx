@@ -14,7 +14,8 @@ const Header = () => {
 			<button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
 				<AiOutlineMenuUnfold color="white" size="28" />
 			</button>
-			<div className="w-[200px]" ></div>
+			<h1 className="main-title text-[34px] leading-[24px]" ><span>N</span>s<span>l</span> </h1>
+			{/* <div className="w-[200px]" ></div> */}
 			{/* <Image src="" alt="My Logo" /> */}
 			{/* <input type="text" /> */}
 			<nav className="hidden md:flex items-center gap-3 ">

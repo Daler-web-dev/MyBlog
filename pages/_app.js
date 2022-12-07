@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import '../styles/globals.scss'
+import '../styles/syntax-highlighting.scss'
 
 
 function MyApp({ Component, pageProps }) {
