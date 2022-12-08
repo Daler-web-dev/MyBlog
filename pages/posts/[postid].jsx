@@ -57,7 +57,7 @@ const Article = ({
 						/>
 					</div>
 
-					<div className="content text-gray-500 text-lg flex flex-col gap-4 w-2/2 ">
+					<div className="content text-gray-500 text-lg flex flex-col w-2/2 ">
 						<MDXRemote {...html} />
 						{/* { */}
 							{/* // !html ? null : <MDXRemote {...html} /> */}

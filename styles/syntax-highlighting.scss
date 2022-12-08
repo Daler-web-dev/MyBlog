@@ -194,3 +194,15 @@ code.language-css .token.selector>.token.pseudo-element {
 .line-highlight.line-highlight[data-end]:after {
     content: '';
 }
+.rehype-code-title {
+    padding: 10px;
+    background-color: #c4c4c4;
+    border-top-right-radius: 14px;
+    border-top-left-radius: 14px;
+    text-align: start;
+    color: black;
+}
+
+.language-jsx, .language-javascript, .language-scss, .language-css {
+    margin-top: 0px !important;
+}

@@ -42,7 +42,7 @@ const blog = () => {
 						"Next Js",
 						"Node Js",
 					].map((item, index) => (
-						<span key={index} className="tag" onClick={() => filterData(item)} >
+						<span key={index} className="tag_custom" onClick={() => filterData(item)} >
 							{item}
 						</span>
 					))}
@@ -79,7 +79,7 @@ const BlogItem = ({attributes, id}) => {
 
 				<div className="flex justify-between items-center">
 					{attributes.author ? <Author col="text-white" {...attributes.author} /> : <></>}
-					<span className="tag h-[100%]">{attributes.category || "No category"}</span>
+					<span className="tag_custom h-[100%]">{attributes.category || "No category"}</span>
 				</div>
 			</div>
 		</div>
