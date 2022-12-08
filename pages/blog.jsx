@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Author from "../components/_child/Author";
@@ -11,17 +11,11 @@ import { url } from "../next.config";
 
 
 const blog = () => {
-	const [filteredData, setFilteredData] = useState([])
 	const {arr, isLoading, isError} = useFetcher("/api/articles?populate=img")
 
 
 	if(isLoading) return (<Spinner/>)
 	if(isError) return (<Error/>)
-
-
-	const filterData = (category) => {
-		
-	}
 
 
 	return (
