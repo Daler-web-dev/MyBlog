@@ -19,7 +19,7 @@ const Header = () => {
 			{/* <Image src="" alt="My Logo" /> */}
 			{/* <input type="text" /> */}
 			<nav className="hidden md:flex items-center gap-3 ">
-				<Link href={"/blog"} >
+				<Link href={"/Blog"} >
 					<a className="link-a">Blog</a>
 				</Link>
 				<Link href={""} >

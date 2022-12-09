@@ -11,7 +11,7 @@ import { url } from "../next.config";
 import axios from "axios";
 
 
-const blog = () => {
+const Blog = () => {
 	const [arr, setArr] = useState([]);
 	const [error, setError] = useState('');
 
@@ -93,4 +93,4 @@ const BlogItem = ({attributes, id}) => {
 	);
 };
 
-export default blog;
+export default Blog;
