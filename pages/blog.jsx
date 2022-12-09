@@ -73,7 +73,7 @@ const BlogItem = ({attributes, id}) => {
                 <img
                     src={coverImage || "/images/img3.png"}
                     alt=""
-                    className="sm:h-[200px] md:h-[400px] object-cover cursor-pointer "
+                    className="sm:h-[200px] md:h-[250px] object-cover cursor-pointer "
                 />
             </Link>
 			<div className="bottom-info  bg-[#1E5C8F] p-5 text-white">

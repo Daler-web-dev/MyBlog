@@ -1,22 +1,28 @@
-import React from 'react';
-import DarkMode from './_child/DarkMode';
+import React from "react";
+import AnimationComponent from "./_child/AnimationComponent";
 
 const MyFirstScreen = () => {
-    return (
-        <section className="bg-[#0A0A0A] h-[80vh] py-10 px-3 md:mb-[100px] md:px-10 max-h-[1080px] ">
-            <div className="first-screen flex flex-col md:flex-row justify-between">
-                <h1 className="main-title text-[26px] text-[#fff] leading-7 md:text-[76px] md:leading-[60px] mb-2" >
-                   <span>N</span>ever stop <span>l</span>earning
-                </h1>
-                <p className="text-[#fff] text-[14px] md:text-[22px] md:w-[90%] " >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque cupiditate dolorum pariatur alias numquam recusandae iure distinctio, doloremque est ipsam odit illo, nesciunt, expedita eum! Ut a fugiat aliquam sit.
-                </p>
-                <div></div>
+	return (
+		<section className="sm:flex-col md:flex-row w-[80%] mx-auto flex justify-between gap-8 items-center" >
+			<div className="left">
+				<h1>
+					Join 10+ million people excelling in
+					<span className="blue">math and science</span>
+				</h1>
+				<h2>
+					For lifelong learners of any age, Brilliant replaces lecture
+					videos with hands-on, interactive problem solving. It’s a
+					better (and more fun) way to learn.
+				</h2>
+                <button>
+                    Get Started
+                </button>
+			</div>
+			<div className="right">
+                <AnimationComponent/>
             </div>
-            <div className="first-screen img-block max-h-[400px] md:max-h-[100%] "></div>
-        </section>
-    );
+		</section>
+	);
 };
-
 
 export default MyFirstScreen;

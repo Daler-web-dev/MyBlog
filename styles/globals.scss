@@ -205,3 +205,19 @@ h1 {
 		grid-template-columns: repeat(1,1fr);
 	}
 }
+
+// blog
+.left, .right{
+  @apply flex flex-col gap-4 w-full mt-10;
+  button {
+    @apply py-[20px] px-[64px] bg-[#7A52D2] text-white rounded-xl w-fit hover:bg-[#5e2ec5];
+  }
+}
+
+.blue {
+  @apply text-[#7A52D2] block;
+}
+
+.right {
+  width: 80%;
+}
