@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Author from "../components/_child/Author";
@@ -8,15 +8,26 @@ import Spinner from "../components/_child/Spinner";
 import Format from "../Layout/Format";
 import useFetcher from "../lib/useFetcher";
 import { url } from "../next.config";
+import axios from "axios";
 
 
 const blog = () => {
-	const {arr, isLoading, isError} = useFetcher("/api/articles?populate=img")
+	const [arr, setArr] = useState([]);
+	const [error, setError] = useState('');
 
-
-	if(isLoading) return (<Spinner/>)
-	if(isError) return (<Error/>)
-
+	useEffect(() => {
+		axios.get(url + '/api/articles?populate=img')
+			.then(res => setArr(res.data.data))
+			.catch((error) => {
+				if (error.response) {
+					setError('Error')
+				} else if (error.request) {
+					setError('Error')
+				} else {
+					setError('Something went wrong please try again')
+				}
+			  });
+	}, []);
 
 	return (
 		<Format>
@@ -43,7 +54,9 @@ const blog = () => {
 				</div>
 			</center>
 			<section className="container-grid">
-                {
+                { 
+					error.length > 0 ? <Error/> : 
+					arr.length === 0 ? <Spinner/> : 
 					arr.map(item => <BlogItem key={item.id} {...item} id={item.id} />)
 				}
             </section>
