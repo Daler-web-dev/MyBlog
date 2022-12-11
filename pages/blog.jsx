@@ -76,7 +76,7 @@ const BlogItem = ({attributes, id}) => {
                     className="sm:h-[200px] md:h-[250px] object-cover cursor-pointer "
                 />
             </Link>
-			<div className="bottom-info  bg-[#1E5C8F] p-5 text-white">
+			<div className="bottom-info  bg-[#5d3aab] p-5 text-white">
                 <Link href={`/posts/${id}`} >
                     <div className="cursor-pointer" >
                         <h3 className="text-[24px] truncate text-elipsis overflow-hidden ..." >{attributes.title || "No title" }</h3>

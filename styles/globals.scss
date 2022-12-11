@@ -114,7 +114,7 @@ h1 {
   body {
     background-color: #0F131E;
   }
-  span, h1, h2, h3, h4, h5, h6, p, b, a {
+  h1, h2, h3, h4, h5, h6, p, b, a {
     color: #b8bbc3 !important;
   }
   footer, footer .newsletter, header {
@@ -159,11 +159,11 @@ h1 {
   z-index: 1000;
   button {
     float: right;
-    background-color: rgb(40, 30, 216, .8);
+    background-color: #492791;
     backdrop-filter: blur(10px);
     transition: 0.5s ease;
     &:hover {
-      background-color: rgba(12, 0, 247, 0.4);
+      background-color: #7A52D2;
     }
     &:focus {
       border-color: transparent !important;
