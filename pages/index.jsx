@@ -13,6 +13,10 @@ const Home = () => {
 	return (
 		<Format>
 			<MyFirstScreen />
+			
+			<center className="mt-10" >
+				<h1 className="w-[30ch]" >Stacks which about you can learn something interesting</h1>
+			</center>
 			<section className="w-full my-10" >
 				<MarqueeSection/>
 			</section>
